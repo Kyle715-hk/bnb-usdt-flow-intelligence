@@ -1,0 +1,42 @@
+# USDT flow monitor — one-page note
+BNB Chain priority · 15 Aug 2026 – 9 Nov 2026
+
+## Key findings
+
+1. **Mid-October BNB transfer volume was not new capital.** Reported USDT transfer volume on BNB Chain jumped by orders of magnitude, and almost all of that day’s volume was in transfers of at least 1 million USDT. This was repeated internal movement (looping), not new USDT arriving on the chain. The same day does not show up as a large mint or burn.
+
+2. **Supply growth in this window was a Tron event, not a BNB event.** Tron recorded one mint of about 3 billion USDT around 21 August. Ethereum and BNB Chain show almost no net new USDT supply over the same dates. A chain can look “busy” on transfer charts without its USDT supply growing.
+
+3. **On ordinary BNB days, large transfers are common but not dominant.** About 20–40% of daily BNB USDT volume comes from transfers of at least 1 million USDT. On the mid-October spike day that share was about 100%. There is no steady rise or fall in that share over the window.
+
+4. **BNB USDT balances are concentrated, but holders are unlabeled.** Top 10 addresses hold about 24% of BNB USDT supply. Top 100 hold about 40%. These addresses are unlabeled and likely include exchanges, custody wallets, bridges, or contracts — not only individual traders.
+
+5. **A simple rule and a light model both catch mid-October.** A transparent statistical rule (|z| > 2) and Isolation Forest both flag the mid-October extreme. They disagree on quieter days. The transparent rule is the one an operations team should act on.
+
+## Operational recommendations
+
+1. **Do not alert on raw BNB transfer volume alone.** A volume spike with no matching mint, burn, or labeled exchange deposit is a candidate for looping or wash activity. Require a second check before treating it as market stress or new capital.
+
+2. **Watch two BNB metrics together each day.**
+   - Share of volume in transfers of at least 1 million USDT (normal band here: about 20–40%; a reading near 100% is a review trigger).
+   - Net USDT minted minus burned (should stay near zero unless Tether actually issues or redeems on that chain).
+   Flag a day only when volume is extreme **and** one of these two also moves.
+
+3. **Treat top-holder concentration as a custody check, not a trading signal.** Review the top 10 and top 100 BNB USDT addresses on a set schedule. Label exchange, bridge, and contract wallets before calling any balance “whale accumulation.”
+
+4. **Use the simple rule as the daily screen; use the model only as a second opinion.** Both methods caught mid-October. Operations should act on the transparent rule. Use the model to suggest extra days worth a look, not to replace the rule.
+
+## BNB Chain point (for a Binance-style reader)
+
+The only material anomaly in this sample is on **BNB Chain**, and it is a **transfer-quality** problem, not a **supply** problem. USDT supply on BNB did not jump when reported volume exploded. A monitoring stack that ranks chains by raw transfer volume would have misread mid-October as BNB “thriving.” A stack that also checks issuance and large-transfer share would have classified it as artificial activity.
+
+## Limitations and assumptions
+
+- Dates covered are 15 August 2026 through 9 November 2026 only. Patterns may not hold outside this window.
+- “Net flow” here means USDT minted minus USDT burned on that chain. It is **not** deposits to or withdrawals from exchanges.
+- Missing mint/burn days were treated as zero. Tron’s result is one large mint, not a steady trend.
+- Chain supply is one snapshot (10 November 2026, DefiLlama; BNB Chain is listed there as BSC), held constant. It does not follow daily supply changes.
+- Holder shares come from adding up historical transfers, not from a dedicated balance database. Shares are approximate. Addresses are not labeled.
+- “Large transfer” means at least 1 million USDT. A different cutoff would change the 20–40% band.
+- The statistical rule and the model were run on BNB Chain only, on a short daily sample, with no official list of true incidents. Agreement is not proof.
+- This is a monitoring note for research and operations. It is not a trading recommendation.
