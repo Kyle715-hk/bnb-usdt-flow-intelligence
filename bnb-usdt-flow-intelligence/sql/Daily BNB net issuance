@@ -1,0 +1,44 @@
+-- Daily BNB USDT net issuance (mints − burns)
+-- Token: 0x55d398326f99059fF775485246999027B3197955 (BNB Chain USDT, 18 decimals)
+-- Window: 2026-08-15 to 2026-11-09
+
+SELECT
+  date_trunc('day', evt_block_time) AS date,
+  SUM(
+    CASE
+      WHEN "from" = 0x0000000000000000000000000000000000000000
+      THEN value / 1e18
+      ELSE 0
+    END
+  ) AS minted,
+  SUM(
+    CASE
+      WHEN "to" = 0x0000000000000000000000000000000000000000
+      THEN value / 1e18
+      ELSE 0
+    END
+  ) AS burned,
+  SUM(
+    CASE
+      WHEN "from" = 0x0000000000000000000000000000000000000000
+      THEN value / 1e18
+      ELSE 0
+    END
+  )
+  - SUM(
+    CASE
+      WHEN "to" = 0x0000000000000000000000000000000000000000
+      THEN value / 1e18
+      ELSE 0
+    END
+  ) AS net_issuance
+FROM erc20_bnb.evt_Transfer
+WHERE contract_address = 0x55d398326f99059fF775485246999027B3197955
+  AND evt_block_time >= TIMESTAMP '2026-08-15'
+  AND evt_block_time <  TIMESTAMP '2026-11-10'
+  AND (
+    "from" = 0x0000000000000000000000000000000000000000
+    OR "to"   = 0x0000000000000000000000000000000000000000
+  )
+GROUP BY 1
+ORDER BY 1
