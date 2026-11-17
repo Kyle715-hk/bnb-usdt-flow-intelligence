@@ -1,0 +1,37 @@
+-- Daily BNB USDT large-transfer share
+-- Token: 0x55d398326f99059fF775485246999027B3197955 (BNB Chain USDT, 18 decimals)
+-- large_share = volume from transfers ≥ 1,000,000 USDT / total volume
+-- Window: 2026-08-15 to 2026-11-09
+
+SELECT
+  date_trunc('day', evt_block_time) AS date,
+  SUM(value / 1e18) AS total_volume,
+  SUM(
+    CASE
+      WHEN value / 1e18 >= 1000000 THEN value / 1e18
+      ELSE 0
+    END
+  ) AS large_volume,
+  COUNT(*) AS n_transfers,
+  SUM(
+    CASE
+      WHEN value / 1e18 >= 1000000 THEN 1
+      ELSE 0
+    END
+  ) AS n_large_transfers,
+  CASE
+    WHEN SUM(value / 1e18) > 0
+    THEN SUM(
+           CASE
+             WHEN value / 1e18 >= 1000000 THEN value / 1e18
+             ELSE 0
+           END
+         ) / SUM(value / 1e18)
+    ELSE NULL
+  END AS large_share
+FROM erc20_bnb.evt_Transfer
+WHERE contract_address = 0x55d398326f99059fF775485246999027B3197955
+  AND evt_block_time >= TIMESTAMP '2026-08-15'
+  AND evt_block_time <  TIMESTAMP '2026-11-10'
+GROUP BY 1
+ORDER BY 1
