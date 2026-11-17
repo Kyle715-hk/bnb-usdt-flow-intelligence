@@ -42,31 +42,32 @@ The priority chain is BNB Chain.
 
 ### 1. Multi-Chain Daily Transfer Volume
 *Shows multi-chain macro ingestion, highlighting BNB Chain's volume surge in mid-October compared to Ethereum and Tron.*
-![Daily USDT Transfer Volume by Chain](figures/Daily_USDT_Transfer_Volume_by_Chain.png)
+![Daily USDT Transfer Volume by Chain](bnb-usdt-flow-intelligence/figures/daily_usdt_volume_by_chain.png)
 
 ### 2. Machine Learning Anomaly Detection
 *Comparison between traditional statistical z-score flags (`\|z\| > 2`) and unsupervised `Isolation Forest` machine learning anomaly detection on BNB daily features.*
-![BNB Anomaly Flags: Statistical vs Isolation Forest](figures/bnb_stat_vs_isolation_forest.png)
+![BNB Anomaly Flags: Statistical vs Isolation Forest](bnb-usdt-flow-intelligence/figures/bnb_stat_vs_isolation_forest.png)
 
 ### 3. BNB Chain Whale Activity & Large-Transfer Share
 *Tracking total daily volume against large-volume and large-transfer share percentages ($\ge 1\text{M}$ USDT threshold).*
-![BNB Chain: Total Volume, Large Volume, Large-Transfer Share](figures/BNBChain_totalvolume_largevolume_largetransfershare.png)
+![BNB Chain: Total Volume, Large Volume, Large-Transfer Share](bnb-usdt-flow-intelligence/figures/BNBChain_totalvolume_largevolume_largetransfershare.png)
 
 ---
 
 ## 🌐 Dune Analytics Dashboard & SQL Architecture (Hosting Methods)
 
-### Method A: Dashboard Preview & External Link
-You can view the fully interactive live dashboard hosted on Dune Analytics here: **[Link to Your Live Dune Dashboard URL Here]**
+### Dashboard External Link
+You can view the dashboard hosted on Dune Analytics here: **[bnb-usdt-flow-intelligence/figures/dune_dashboard_preview.png]**
 
 *Dashboard UI Preview:*
-> ![Dune Dashboard Snapshot](figures/dune_dashboard_preview.png)
-*(Tip: Take a screenshot of your active Dune dashboard panel, save it to `figures/dune_dashboard_preview.png`, and it will render right here).*
+> ![Dune Dashboard Snapshot](bnb-usdt-flow-intelligence/figures/dune_dashboard_preview.png)
 
 ### Method B: Transparent SQL Query Directory
-To inspect the raw queries powering this research, view the version-controlled script files located in the repository:
-* [`sql/bnb_usdt_daily_volumes.sql`](sql/bnb_usdt_daily_volumes.sql) — Extracts multi-chain daily transfer aggregates and normalizes decimals ($10^6$ for USDT).
-* [`sql/cex_net_flows.sql`](sql/cex_net_flows.sql) — Tracks capital movements across labeled exchange deposit clusters.
+To inspect the production-ready DuneSQL queries powering this intelligence framework, view the version-controlled script files located in the repository's `sql/` directory:
+
+* [`sql/daily_bnb_net_issuance.sql`](bnb-usdt-flow-intelligence/sql/Daily BNB net issuance) — Tracks daily BNB Chain USDT mints, burns, and net issuance flows.
+* [`sql/bnb_large_transfer_share.sql`](bnb-usdt-flow-intelligence/sql/usdt_large_transfer_share_bnb) — Computes the daily volume share of whale and large-ticket transfers ($\ge 1\text{M}$ USDT threshold).
+* [`sql/usdt_daily_volume.sql`](bnb-usdt-flow-intelligence/sql/usdt_daily_volume_bnb) — Extracts multi-chain USDT transfer volumes and transaction counts for comparative analysis.
 
 ---
 
