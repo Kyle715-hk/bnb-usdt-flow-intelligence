@@ -1,0 +1,8 @@
+SELECT
+  date_trunc('day', evt_block_time) AS day,
+  SUM(value / 1e6) AS volume_usdt
+FROM erc20_tron.evt_Transfer
+WHERE contract_address = 0xa614f803b6fd780986a42c78ec9c7f77e6ded13c  -- USDT on Tron
+  AND evt_block_time >= CURRENT_DATE - INTERVAL '90' DAY
+GROUP BY 1
+ORDER BY 1
