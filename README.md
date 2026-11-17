@@ -72,28 +72,33 @@ To inspect the production-ready DuneSQL queries powering this intelligence frame
 ---
 
 ## ⚙️ Operational Recommendations
-- Do not alert on raw BNB transfer volume alone.
-- Review a BNB day when volume is extreme and either large-transfer share is far outside the 20–40% band or net issuance moves.
-- Treat top-holder concentration as a custody check. Label exchange and contract wallets before calling a balance a whale.
+1. **Do not alert on raw BNB transfer volume alone.** A volume spike with no matching mint, burn, or labeled exchange deposit is a candidate for looping or wash activity. Require a second check before treating it as market stress or new capital.
+
+2. **Watch two BNB metrics together each day.**
+   - Share of volume in transfers of at least 1 million USDT (normal band here: about 20–40%; a reading near 100% is a review trigger).
+   - Net USDT minted minus burned (should stay near zero unless Tether actually issues or redeems on that chain).
+   Flag a day only when volume is extreme **and** one of these two also moves.
+
+3. **Treat top-holder concentration as a custody check, not a trading signal.** Review the top 10 and top 100 BNB USDT addresses on a set schedule. Label exchange, bridge, and contract wallets before calling any balance “whale accumulation.”
+
+4. **Use the simple rule as the daily screen; use the model only as a second opinion.** Both methods caught mid-October. Operations should act on the transparent rule. Use the model to suggest extra days worth a look, not to replace the rule.
 
 ---
 
-## ⚠️ Limitations
-- Fixed window only. Not a live feed.
-- Net issuance is not exchange flow.
-- Supply is one snapshot, held constant.
-- Holder balances are reconstructed from transfers and are approximate.
-- Anomaly detection was run on BNB only, with no labeled incident list.
+## BNB Chain point (for a Binance-style reader)
 
----
+The only material anomaly in this sample is on **BNB Chain**, and it is a **transfer-quality** problem, not a **supply** problem. USDT supply on BNB did not jump when reported volume exploded. A monitoring stack that ranks chains by raw transfer volume would have misread mid-October as BNB “thriving.” A stack that also checks issuance and large-transfer share would have classified it as artificial activity.
 
-## 📂 How to Read This Repo
-1. `summary/one_page_summary.md` — findings and recommendations
-2. `notebooks/usdt_flow_intelligence.ipynb` — full analysis
-3. `figures/` — charts and visual assets used in the summary and README
-4. `sql/` — raw production-ready SQL queries (Method B)
-5. `data/sample/` — cleaned inputs behind the charts
+## Limitations and assumptions
 
+- Dates covered are 15 August 2026 through 9 November 2026 only. Patterns may not hold outside this window.
+- “Net flow” here means USDT minted minus USDT burned on that chain. It is **not** deposits to or withdrawals from exchanges.
+- Missing mint/burn days were treated as zero. Tron’s result is one large mint, not a steady trend.
+- Chain supply is one snapshot (10 November 2026, DefiLlama; BNB Chain is listed there as BSC), held constant. It does not follow daily supply changes.
+- Holder shares come from adding up historical transfers, not from a dedicated balance database. Shares are approximate. Addresses are not labeled.
+- “Large transfer” means at least 1 million USDT. A different cutoff would change the 20–40% band.
+- The statistical rule and the model were run on BNB Chain only, on a short daily sample, with no official list of true incidents. Agreement is not proof.
+- This is a monitoring note for research and operations. It is not a trading recommendation.
 ---
 
 ## 🗄️ Data Sources
