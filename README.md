@@ -59,19 +59,19 @@ Across **1,291,938,984** total USDT transfer events totaling **$4,062,782,156,71
 
 ### 1. BNB Chain USDT Payment Structure: Share of Transfers vs. Volume by Size Tier
 *Demonstrates the structural divergence between high-frequency retail micro-payments (`<$100` at 80.03% of transfers) and capital-dominant institutional settlement (`≥$1M` at 90.07% of volume).*
-![BNB Chain USDT Share of Transfers vs. Volume by Size Tier](<figures/BNB Chain USDT Share of Transfers vs. Volume by Size Tier.png>)
+![BNB Chain USDT Share of Transfers vs. Volume by Size Tier](bnb-usdt-flow-intelligence/figures/BNB Chain USDT Share of Transfers vs. Volume by Size Tier.png)
 
 ### 2. Multi-Chain Daily Transfer Volume
 *Shows multi-chain macro ingestion, highlighting BNB Chain's volume surge in mid-October compared to Ethereum and Tron.*
-![Daily USDT Transfer Volume by Chain](figures/daily_usdt_volume_by_chain.png)
+![Daily USDT Transfer Volume by Chain](bnb-usdt-flow-intelligence/figures/daily_usdt_volume_by_chain.png)
 
 ### 3. BNB Chain Whale Activity & Large-Transfer Share
 *Tracks total daily volume against large-volume and large-transfer share percentages ($\ge 1\text{M}$ USDT threshold).*
-![BNB Chain: Total Volume, Large Volume, Large-Transfer Share](figures/BNBChain_totalvolume_largevolume_largetransfershare.png)
+![BNB Chain: Total Volume, Large Volume, Large-Transfer Share](bnb-usdt-flow-intelligence/figures/BNBChain_totalvolume_largevolume_largetransfershare.png)
 
 ### 4. Machine Learning Anomaly Detection
 *Comparison between traditional statistical z-score flags (`\|z\| > 2`) and unsupervised `Isolation Forest` machine learning anomaly detection on BNB daily features.*
-![BNB Anomaly Flags: Statistical vs Isolation Forest](figures/bnb_stat_vs_isolation_forest.png)
+![BNB Anomaly Flags: Statistical vs Isolation Forest](bnb-usdt-flow-intelligence/figures/bnb_stat_vs_isolation_forest.png)
 
 ---
 
