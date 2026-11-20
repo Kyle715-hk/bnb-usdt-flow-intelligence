@@ -87,7 +87,7 @@ To inspect the production-ready DuneSQL queries and aggregated output powering t
 * [`sql/bnb_payment_size_tiers.sql`](bnb-usdt-flow-intelligence/sql/bnb_payment_size_tiers.sql) — Segments BNB Chain USDT transfers into five behavioral tiers (`<$100` to `≥$1M`) comparing To-C retail frequency against B2B/institutional capital volume.
 - [`bnb-usdt-flow-intelligence/sql/Daily BNB net issuance`](<bnb-usdt-flow-intelligence/sql/Daily BNB net issuance>) — Tracks daily BNB Chain USDT mints, burns, and net issuance flows.
 * [`sql/usdt_large_transfer_share_bnb.sql`](bnb-usdt-flow-intelligence/sql/usdt_large_transfer_share_bnb) — Computes the daily volume share of whale and large-ticket transfers ($\ge 1\text{M}$ USDT threshold).
-* [`sql/usdt_daily_volume_bnb.sql`](bnb-usdt-flow-intelligence/sql/usdt_daily_volume_bnb) — Extracts multi-chain USDT transfer volumes and event counts for comparative analysis.
+* [`sql/usdt_daily_volume_bnb.sql`](bnb-usdt-flow-intelligence/sql/usdt_daily_volume_bnb) — Queries daily BNB Chain USDT transfer volume
 * [`data/BNB_Chain_USDT_Share_of_Transfers_vs_Volume_by_Size_Tier.csv`](bnb-usdt-flow-intelligence/data/sample/BNB_Chain_USDT_Share_of_Transfers_vs_Volume_by_Size_Tier.csv) — Aggregated payment tier dataset exported from Dune Analytics (`tx_count` reflects `COUNT(*)` transfer events).
 
 ---
