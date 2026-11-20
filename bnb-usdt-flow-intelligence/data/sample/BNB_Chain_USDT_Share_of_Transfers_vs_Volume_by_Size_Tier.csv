@@ -1,0 +1,6 @@
+payment_tier,segment,tx_count,pct_of_tx_count,total_volume_usdt,pct_of_volume
+1. Micro-Retail (<$100),To-C / Retail (<$10k),1033942347,80.030000000000000,13828908396.61,0.34
+2. Standard Retail ($100–$1k),To-C / Retail (<$10k),208315584,16.120000000000000,59775931253.49,1.47
+3. Pro-Retail / SME ($1k–$10k),To-C / Retail (<$10k),42551451,3.290000000000000,115376337783.23,2.84
+4. B2B / Commercial ($10k–$1M),B2B / Institutional (≥$10k),5873351,0.450000000000000,214260041015.26,5.27
+5. Institutional / Whale (≥$1M),B2B / Institutional (≥$10k),1256251,0.100000000000000,3659540938264.5,90.07
