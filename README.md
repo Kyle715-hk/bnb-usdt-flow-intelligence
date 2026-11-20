@@ -59,8 +59,7 @@ Across **1,291,938,984** total USDT transfer events totaling **$4,062,782,156,71
 
 ### 1. BNB Chain USDT Payment Structure: Share of Transfers vs. Volume by Size Tier
 *Demonstrates the structural divergence between high-frequency retail micro-payments (`<$100` at 80.03% of transfers) and capital-dominant institutional settlement (`≥$1M` at 90.07% of volume).*
-
-![BNB Chain USDT Share of Transfers vs. Volume by Size Tier](bnb-usdt-flow-intelligence/figures/BNB Chain USDT Share of Transfers vs. Volume by Size Tier.png)
+![BNB Chain USDT Share of Transfers vs. Volume by Size Tier](<figures/BNB Chain USDT Share of Transfers vs. Volume by Size Tier.png>)
 
 ### 2. Multi-Chain Daily Transfer Volume
 *Shows multi-chain macro ingestion, highlighting BNB Chain's volume surge in mid-October compared to Ethereum and Tron.*
