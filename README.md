@@ -79,7 +79,7 @@ Across **1,291,938,984** total USDT transfer events totaling **$4,062,782,156,71
 
 ### Dashboard Preview
 *Dune Analytics Dashboard UI Snapshot:*
-> ![Dune Dashboard Snapshot](figures/dune_dashboard_preview.png)
+> ![Dune Dashboard Snapshot](bnb-usdt-flow-intelligence/figures/dune_dashboard_snapshot.png)
 
 ### Transparent SQL Query & Dataset Directory
 To inspect the production-ready DuneSQL queries and aggregated output powering this research framework, view the version-controlled files in `sql/` and `data/`:
