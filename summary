@@ -1,5 +1,13 @@
 # USDT flow monitor — one-page note
-BNB Chain priority · 15 Aug 2026 – 9 Nov 2026
+BNB Chain priority · 15 Aug 2026 – 9 Nov 2026  
+**Repository:** [Kyle715-hk/bnb-usdt-flow-intelligence](https://github.com/Kyle715-hk/bnb-usdt-flow-intelligence/tree/main) · **Stack:** DuneSQL, Python (`pandas`, `matplotlib`, `scikit-learn`)
+
+## Payment structure snapshot (To-C retail vs. B2B / institutional)
+
+Across **1,291,938,984** BNB Chain USDT transfer events totaling **$4,062,782,156,713.09** (`~$4.06T`), activity splits sharply between transaction count and capital moved:
+
+- **Retail / To-C (`<$10k`):** Accounts for **1,284,809,382** transfers (**99.45%** of transfer events) but only **$188.98B** (**4.65%** of total volume), led by micro-transfers under `$100` at **80.03%** of transfer count (`$13.83B`, `0.34%` of volume).
+- **B2B / Institutional (`≥$10k`):** Accounts for **7,129,602** transfers (**0.55%** of transfer events) yet drives **$3.87T** (**95.35%** of total volume), with `≥$1M` institutional transfers alone representing **90.07%** (`$3.66T`) of volume.
 
 ## Key findings
 
@@ -18,8 +26,8 @@ BNB Chain priority · 15 Aug 2026 – 9 Nov 2026
 1. **Do not alert on raw BNB transfer volume alone.** A volume spike with no matching mint, burn, or labeled exchange deposit is a candidate for looping or wash activity. Require a second check before treating it as market stress or new capital.
 
 2. **Watch two BNB metrics together each day.**
-   - Share of volume in transfers of at least 1 million USDT (normal band here: about 20–40%; a reading near 100% is a review trigger).
-   - Net USDT minted minus burned (should stay near zero unless Tether actually issues or redeems on that chain).
+- Share of volume in transfers of at least 1 million USDT (normal band here: about 20–40%; a reading near 100% is a review trigger).
+  - Net USDT minted minus burned (should stay near zero unless Tether actually issues or redeems on that chain).
    Flag a day only when volume is extreme **and** one of these two also moves.
 
 3. **Treat top-holder concentration as a custody check, not a trading signal.** Review the top 10 and top 100 BNB USDT addresses on a set schedule. Label exchange, bridge, and contract wallets before calling any balance “whale accumulation.”
@@ -33,6 +41,7 @@ The only material anomaly in this sample is on **BNB Chain**, and it is a **tran
 ## Limitations and assumptions
 
 - Dates covered are 15 August 2026 through 9 November 2026 only. Patterns may not hold outside this window.
+- Payment size tiers (`<$10k` To-C vs. `≥$10k` B2B/institutional) are size-based proxies on `erc20_bnb.evt_Transfer` event logs (`COUNT(*)`), not KYC labels or distinct transaction hashes (`COUNT(DISTINCT evt_tx_hash)`).
 - “Net flow” here means USDT minted minus USDT burned on that chain. It is **not** deposits to or withdrawals from exchanges.
 - Missing mint/burn days were treated as zero. Tron’s result is one large mint, not a steady trend.
 - Chain supply is one snapshot (10 November 2026, DefiLlama; BNB Chain is listed there as BSC), held constant. It does not follow daily supply changes.
